@@ -58,7 +58,7 @@ impl Default for Writer {
     fn default() -> Self {
         Writer {
             column: 0,
-            row: 1,
+            row: 0,
             color: ColorCode::new(Color::White, Color::Black),
             buffer: unsafe { &mut *(VGA_START_ADDRESS as *mut Buffer) },
         }
@@ -126,7 +126,7 @@ impl Writer {
 
     pub fn reset(&mut self) {
         self.column = 0;
-        self.row = 1;
+        self.row = 0;
 
         for row in 0..BUFFER_HEIGHT {
             self.clear_row(row);
