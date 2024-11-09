@@ -98,13 +98,13 @@ impl Writer {
 
     fn newline(&mut self) {
         if self.row == BUFFER_HEIGHT - 1 {
-            self.clear_row(0);
-
             for row in 1..BUFFER_HEIGHT {
                 for col in 0..BUFFER_WIDTH {
                     let character = self.buffer.chars[row][col].read();
                     self.buffer.chars[row - 1][col].write(character);
                 }
+
+                self.clear_row(row);
             }
         } else {
             self.row += 1;
