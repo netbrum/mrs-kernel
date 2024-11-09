@@ -42,7 +42,13 @@ pub extern "C" fn _start() -> ! {
 
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
-    vga::WRITER.lock().reset();
+    use vga::{Color, ColorCode, WRITER};
+
+    WRITER.lock().reset();
+    WRITER
+        .lock()
+        .set_color(ColorCode::new(Color::Red, Color::Black));
+
     println!("{}", info);
 
     loop {}

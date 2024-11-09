@@ -1,7 +1,7 @@
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
-enum Color {
+pub enum Color {
     Black = 0,
     BLue = 1,
     Green = 2,
@@ -22,10 +22,10 @@ enum Color {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(transparent)]
-struct ColorCode(u8);
+pub struct ColorCode(u8);
 
 impl ColorCode {
-    fn new(foreground: Color, background: Color) -> Self {
+    pub fn new(foreground: Color, background: Color) -> Self {
         ColorCode((background as u8) << 4 | (foreground as u8))
     }
 }
@@ -131,6 +131,10 @@ impl Writer {
         for row in 0..BUFFER_HEIGHT {
             self.clear_row(row);
         }
+    }
+
+    pub fn set_color(&mut self, color: ColorCode) {
+        self.color = color;
     }
 }
 
