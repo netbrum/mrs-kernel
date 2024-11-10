@@ -3,7 +3,7 @@
 version = 4
 
 [[package]]
-name = "bogowl"
+name = "mrs-kernel"
 version = "0.1.0"
 dependencies = [
  "bootloader",
